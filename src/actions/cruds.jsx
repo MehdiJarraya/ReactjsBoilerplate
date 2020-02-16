@@ -76,11 +76,6 @@ export const getData = (n, url, cb = null) => {
         }).catch(function (r) {
             dispatchAlert(dispatch, 'Erreur serveur : ' + ((r.response) ? r.response.status : ''));//call dispatchAlert action 
 
-            // dispatch({
-            //     type: n + types.GET_ITEMS,
-            //     payload: [],
-            //     iserror: true
-            // });
             if (cb) { setTimeout(function () { cb(r.response); }, 10); }
         }).then(function (r) {
             dispatch({ type: types.APP_LOADING, payload: false });//call reducer to set loading to "false"(stop loading) 
@@ -127,12 +122,6 @@ export const putData = (n, url, id, data, cb = null) => {
             });
         }).catch(function (r) {
             dispatchAlert(dispatch, 'Erreur serveur : ' + ((r.response) ? r.response.status : ''));//call dispatchAlert action 
-            dispatch({
-                type: n + types.UPDATE_ITEM,
-                id: id,
-                payload: null,
-                iserror: true
-            });
         }).then(function (r) {
             dispatch({ type: types.APP_LOADING, payload: false });});//call reducer to set loading to "false"(stop loading)
         
@@ -151,11 +140,6 @@ export const deleteData = (n, url, id, cb = null) => {
             });
         }).catch(function (r) {
             dispatchAlert(dispatch, 'Erreur serveur : ' + ((r.response) ? r.response.status : ''));//call dispatchAlert action 
-            dispatch({
-                type: n + types.DELETE_ITEM,
-                id: id,
-                iserror: true
-            });
         }).then(function (r) {
             dispatch({ type: types.APP_LOADING, payload: false });//call reducer to set loading to "false"(stop loading) 
         });
