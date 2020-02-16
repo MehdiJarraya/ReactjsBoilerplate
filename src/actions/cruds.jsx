@@ -99,7 +99,7 @@ export const postData = (n, url, data, cb = null) => {
             dispatchSucess(dispatch);//call dispatch sucess to show sucess message action 
             if (cb) { setTimeout(function () { cb(r); }, 10); }
         }).catch(function (r) {
-            dispatchAlert(dispatch, r.response? (r.response.data?r.response.data.message:'')  :  'Erreur serveur :' ) ;//call dispatchAlert action 
+            dispatchAlert(dispatch, r.response? (r.response.data?r.response.data.message:'')  :  'Welcome' ) ;//call dispatchAlert action 
             if (cb) { setTimeout(function () { cb(r.response); }, 10); }
         }).then(function (r) { dispatch({ type: types.APP_LOADING, payload: false }); });//call reducer to set loading to "false"(stop loading) 
     }

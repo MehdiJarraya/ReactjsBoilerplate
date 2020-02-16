@@ -38,15 +38,15 @@ export default React.memo(function MaterialTableDemo(props) {
       {
         title: 'Birth Place',
         field: 'birthCity',
-        lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
+        lookup: { 34: 'Canada', 63: 'Tunisia' },
       },
     ],
     data: [
-      { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
+      { name: 'Mehdi', surname: 'Jarraya', birthYear: 1992, birthCity: 63 },
       {
-        name: 'Zerya Betül',
-        surname: 'Baran',
-        birthYear: 2017,
+        name: 'Justin ',
+        surname: 'Trudeau',
+        birthYear: 1971,
         birthCity: 34,
       },
     ],

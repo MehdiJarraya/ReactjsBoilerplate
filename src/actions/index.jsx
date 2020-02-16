@@ -12,7 +12,7 @@ export const dispatchAlert = (dispatch, message) => {
     dispatch({
         type: types.TOGGLE_ALERT,
         payload: message,
-        etat: 2
+        etat: 1
     });
 }
 
