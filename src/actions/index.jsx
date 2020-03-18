@@ -102,21 +102,21 @@ export const setCurrentLanguage = (language) => {
 
 
 
-export const singnUpUser = (o, cb = null) => {
+export const singnUpUser = (o) => {
     // lorsque l'url est introuvable 404 request method will be automaticly OPTION
     console.log("user isncription", o)
-    return cruds.postData('app_session', "/register", o, cb);
+    return cruds.postData('app_session', "/authentification/signup", o);
 }
 
 
-export const resetUserPassword = (o, cb = null) => {
+export const resetUserPassword = (o) => {
     // lorsque l'url est introuvable 404 request method will be automaticly OPTION
-    return cruds.postData('reset_password', "/password/create", o, cb);
+    return cruds.postData('reset_password', "/password/create", o);
 }
 
-export const newUserPassword = (o, cb = null) => {
+export const newUserPassword = (o) => {
     // lorsque l'url est introuvable 404 request method will be automaticly OPTION
-    return cruds.postData('reset_password', "/password/reset", o, cb);
+    return cruds.postData('reset_password', "/password/reset", o);
 }
 
 
@@ -138,16 +138,16 @@ export const displayWarning = (msg) => {
 }
 
 // Status 301 --> wrong request (remove "/" from url )  
-export const loginUser = (o, cb = null) => {
+export const loginUser = (o) => {
     // lorsque l'url est introuvable 404 request method will be automaticly OPTION
     console.log("loginUser use action Object", o)
-    return cruds.postData('app_session', "/login", o, cb);
+    return cruds.postData('app_session', "/login", o);
 }
 
 
-export const loginThenNavigate = (o, navigationHistory, cb = null) => {
+export const loginThenNavigate = (o, navigationHistory) => {
     return (dispatch, getState) => {
-        return dispatch(loginUser(o, cb)).then(() => {
+        return dispatch(loginUser(o)).then(() => {
             // getState must be called after dispatch to get the latest state
             // getState().app.alert.show 
             navigationHistory.push('/drawer/users')
@@ -156,18 +156,18 @@ export const loginThenNavigate = (o, navigationHistory, cb = null) => {
 }
 
 
-export const loadDiplome = (f = '', page = '1', orderBy  = '', order = '', cb = null) => {
-    return cruds.getData('diplome' + types.GET_ITEMS, "/diplome?page="+page+'&'+ f+'&'+ orderBy +'&'+ order, cb);
+export const loadDiplome = (f = '', page = '1', orderBy  = '', order = '') => {
+    return cruds.getData('diplome' + types.GET_ITEMS, "/diplome?page="+page+'&'+ f+'&'+ orderBy +'&'+ order);
 }
 
-export const createDiplome = (item, cb = null) => {
-    return cruds.postData('diplome', "/diplome", item, cb);
+export const createDiplome = (item) => {
+    return cruds.postData('diplome', "/diplome", item);
 }
-export const deleteDiplome = (itemId, cb = null) => {
-    return cruds.deleteData('diplome', "/diplome/", itemId, cb);
+export const deleteDiplome = (itemId) => {
+    return cruds.deleteData('diplome', "/diplome/", itemId);
 }
-export const updateDiplome = (o, cb = null) => {
-    return cruds.putData('diplome', '/diplome/', o.id, o, cb);
+export const updateDiplome = (o) => {
+    return cruds.putData('diplome', '/diplome/', o.id, o);
 }
 
 

@@ -24,7 +24,7 @@ export const gAxios = (token, url, method = 'get', data = {}, headers = {}) => {
 };
 
 
-export const postFile = (n, url, key, file, cb = null) => {
+export const postFile = (n, url, key, file) => {
     console.log("from postFile  ", file[0])
     return function (dispatch, getState) {
         dispatch({ type: types.APP_LOADING, payload: true });//call reducer to set loading to "true"(start loading)
@@ -57,9 +57,8 @@ export const postFile = (n, url, key, file, cb = null) => {
  * 
  * @param {String} n : Action Name to Dispatch on Success
  * @param {String} url : URL to get Data from
- * @param {Function} cb : CallBack Function to execute on success
  */
-export const getData = (n, url, cb = null) => {
+export const getData = (n, url) => {
 
 // with redux Thunk (action return) is a function that contain two params 1-dispatch 2- getState()-> function contain application store (all reducer)
     return function (dispatch, getState) {
@@ -72,11 +71,11 @@ export const getData = (n, url, cb = null) => {
                 payload: r.data,
                 iserror: false,
             });
-            if (cb) { setTimeout(function () { cb(r); }, 10); }
+            
         }).catch(function (r) {
             dispatchAlert(dispatch, 'Erreur serveur : ' + ((r.response) ? r.response.status : ''));//call dispatchAlert action 
 
-            if (cb) { setTimeout(function () { cb(r.response); }, 10); }
+            
         }).then(function (r) {
             dispatch({ type: types.APP_LOADING, payload: false });//call reducer to set loading to "false"(stop loading) 
         });
@@ -85,7 +84,7 @@ export const getData = (n, url, cb = null) => {
 
 
 
-export const postData = (n, url, data, cb = null) => {
+export const postData = (n, url, data) => {
     return function (dispatch, getState) {
         dispatch({ type: types.APP_LOADING, payload: true });//call reducer to set loading to "true"(start loading)
         //** consume the web service using post method to pass new item as data then call reducer to set new changes**
@@ -97,10 +96,9 @@ export const postData = (n, url, data, cb = null) => {
                 iserror: false
             });
             dispatchSucess(dispatch);//call dispatch sucess to show sucess message action 
-            if (cb) { setTimeout(function () { cb(r); }, 10); }
         }).catch(function (r) {
+            console.log('error', r);
             dispatchAlert(dispatch, r.response? (r.response.data?r.response.data.message:'')  :  'Welcome' ) ;//call dispatchAlert action 
-            if (cb) { setTimeout(function () { cb(r.response); }, 10); }
         }).then(function (r) { dispatch({ type: types.APP_LOADING, payload: false }); });//call reducer to set loading to "false"(stop loading) 
     }
 }
@@ -108,7 +106,7 @@ export const postData = (n, url, data, cb = null) => {
 
 
 
-export const putData = (n, url, id, data, cb = null) => {
+export const putData = (n, url, id, data) => {
     return function (dispatch, getState) {
         dispatch({ type: types.APP_LOADING, payload: true });//call reducer to set loading to "true"(start loading)
         //** */consume the web service using put method to update an item  then call reducer to set new changes**
@@ -128,7 +126,7 @@ export const putData = (n, url, id, data, cb = null) => {
     }
 }
 
-export const deleteData = (n, url, id, cb = null) => {
+export const deleteData = (n, url, id) => {
     return function (dispatch, getState) {
         dispatch({ type: types.APP_LOADING, payload: true });//call reducer to set loading to "true"(start loading)
         //** */consume the web service using delete method to delete an item  then call reducer to set new changes**
