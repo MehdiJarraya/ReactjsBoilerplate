@@ -12,7 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { loginThenNavigate } from '../actions';
+import { loginUser } from '../actions';
 
 
 const useStyles = makeStyles(theme => ({
@@ -43,12 +43,12 @@ const useStyles = makeStyles(theme => ({
 export default function SignIn(props) {
   const classes = useStyles();
 
-  const [state, setState] = useState({ email: "", password: "", showPassword:false })
+  const [state, setState] = useState({ email: "", password: "" })
   const dispatch = useDispatch()
 
 
   const login = () => {
-    dispatch(loginThenNavigate({
+    dispatch(loginUser({
       email: state.email,
       password: state.password
     }, props.history));

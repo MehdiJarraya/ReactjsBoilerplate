@@ -2,7 +2,6 @@ import * as types from '../actions/actionTypes';
 import { createCookie, eraseCookie } from '../utils';
 
 export default function (state = {
-    isDrawerOpen: false,
     // i used the same var alert.show for displaying errror or sucess message so to hide the popup show value must be null
     alert: { show: null, message: '' },
     appLoading: false,
@@ -13,18 +12,12 @@ export default function (state = {
     currentPage: 'Home Page',
     currentLanguage: 'fr',
     config: {
-        // dateFormat: 'DD/MM/YYYY',
-        // clientId: '6xhD55bBYls1YlawMiYREhsGGSyw',
-        url: types.GLOBAL_URL + '/api',
+        url: types.GLOBAL_URL,
     },
     profile: null,
-    LeafletFgRef: null
-
 
 }, action = null) {
     switch (action.type) {
-        case types.TOGGLE_DRAWER:
-            return { ...state, isDrawerOpen: action.payload };
         case types.APP_LOADING:
             return { ...state, appLoading: action.payload };
         case types.TOGGLE_ALERT:
@@ -64,10 +57,6 @@ export default function (state = {
             return { ...state, currentPage: action.payload };
         case 'SET_CURRENTLANGUAGE':
             return { ...state, currentLanguage: action.payload };
-
-        case 'LeafletFgRef':
-            return { ...state, LeafletFgRef: action.payload };
-
         default:
             return state;
 

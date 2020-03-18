@@ -15,5 +15,5 @@ export const EMPTY_ROW_TO_EXPAND = 'EMPTY_ROW_TO_EXPAND';
 export const UPDATE_SELECTION='UPDATE_SELECTION' 
 export const TOGGLE_ADD_DIALOG='TOGGLE_ADD_DIALOG'
 export const DELETE_MULTIPLE='DELETE_MULTIPLE'
-export const GLOBAL_URL='http://localhost:8000';
+export const GLOBAL_URL='http://localhost:5000';
 
